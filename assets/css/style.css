@@ -12,13 +12,14 @@ h1{
     background-color: orange;
     margin-bottom: 3%;
 }
+
 #instructions{
+   padding:2%;
    line-height: 150%;
-    color: blue;
+   color: blue;
    background-color: beige;
    margin-bottom: 3%;
 }
-
 
 img {
     height: 15%;
