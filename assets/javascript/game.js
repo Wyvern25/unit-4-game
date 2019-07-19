@@ -24,18 +24,18 @@ function start() {
         $('#sapphireValue').text("??");
 
     }
-    console.log(gemSpawn);
+    //console.log(gemSpawn);
 
     //0 1 2 01 02 12 mod outcome pairings for creating winning gem combinations
 
     var antiArray = [target % gemSpawn[0], target % gemSpawn[1],
     target % gemSpawn[2], (target % gemSpawn[0]) % gemSpawn[1],
     (target % gemSpawn[0]) % gemSpawn[2], (target % gemSpawn[1]) % gemSpawn[2]]
-    console.log(antiArray);
+    //console.log(antiArray);
 
     var lastGem = Math.floor(Math.random() * 6);
 
-    console.log(antiArray[lastGem]);
+    //console.log(antiArray[lastGem]);
     //no remainder, fresh value
     if (antiArray[lastGem] > 12) {
         lastGem = Math.floor(Math.random() * 6);
@@ -66,7 +66,7 @@ function start() {
     }
 
 
-    console.log(gemSpawn);
+    //console.log(gemSpawn);
     for (var i = 0; i < 4; i++) {
         var gemValue = $('img').eq(i).attr('hiddenv', gemSpawn[i]);
         var displayGemValue = $('img').eq(i).attr('hiddenValue', true);
@@ -101,7 +101,7 @@ $('#sapphire').on('click', function () {
 
 $('#gems').on('click', 'img', function () {
 
-    console.log($(this).attr("hiddenv"));
+   // console.log($(this).attr("hiddenv"));
 
 
 
@@ -109,7 +109,7 @@ $('#gems').on('click', 'img', function () {
     // if (displayValue == true){
     //     displayValue = false;
     // }
-    console.log($(this).attr("hiddenValue"));
+   // console.log($(this).attr("hiddenValue"));
     //  var gemValue = Math.ceil(Math.random() * 12);
 
     /*win debugger
