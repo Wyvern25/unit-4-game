@@ -1,160 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gem Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <style>
-        img{
-            height: 15%;
-            width: 15%;
-        }    
+        
 
-            
-    
     </style>
 </head>
+
 <body>
     <h1>Crystals Collector</h1>
 
-    <div>
+    <div id="instructions">
         <p>You will be given a random number at the start of the game.</p>
-        <p>There are 4 crystals below.  By clicking on a crystal, you will add a specific amount of points to your total score.</p>
-        <p>You win the game by matching your total score to a randomly generated number; you lose the game if your totl score goes above the random number.</p>
+        <p>There are 4 crystals below. By clicking on a crystal, you will add a specific amount of points to your total
+            score.</p>
+        <p>You win the game by matching your total score to a randomly generated number; you lose the game if your totl
+            score goes above the random number.</p>
         <p>The value of each crystal is hidden from you until you click on it.</p>
-        <p>Each time when the game starts, the game will change the values of each crystal.</p> 
+        <p>Each time when the game starts, the game will change the values of each crystal.</p>
     </div>
-    
+
     <div id='targetScore'>
-        <p></p>
+        <p>Target Score:</p>
+        <span id="targetScorer"></span>
     </div>
-    
+
     <div id="winLoss">
-        <p>Wins: <span id= 'Wins'></span></p>
-        <p>Losses: <span id= 'Losses'></span></p>
+        <p>Wins: <span id='Wins'></span></p>
+        <p>Losses: <span id='Losses'></span></p>
     </div>
 
     <!-- source: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bb3df739-d047-4430-8994-f559512aabe7/dcjpzwp-53619b1c-e7df-401e-806f-01775367702a.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2JiM2RmNzM5LWQwNDctNDQzMC04OTk0LWY1NTk1MTJhYWJlN1wvZGNqcHp3cC01MzYxOWIxYy1lN2RmLTQwMWUtODA2Zi0wMTc3NTM2NzcwMmEuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9CO15rOWdHEy_dIYQukqXkOa0qoswWviYTDF2OzeOI8 -->
-    <div id = "gems">
-        <img id ='emerald' src = "assets/images/emerald.png" hiddenv=""> 
-        <img id = 'ruby'src = "assets/images/ruby.png" hiddenv="">
-        <img id = 'diamond' src ="assets/images/diamond.png" hiddenv="">
-        <img id = 'sapphire' src ="assets/images/sapphire.png" hiddenv="">
+    <div id="gems">
+        <img id='emerald' src="assets/images/emerald.png" hiddenv="">
+        <img id='ruby' src="assets/images/ruby.png" hiddenv="">
+        <img id='diamond' src="assets/images/diamond.png" hiddenv="">
+        <img id='sapphire' src="assets/images/sapphire.png" hiddenv="">
     </div>
+    <div id='scoreGems'>
+        <span id='emeraldValue'></span>
+        <span id='rubyValue'></span>
+        <span id='diamondValue'></span>
+        <span id='sapphireValue'></span>
+
+    </div>
+
+    <br>
 
     <div id="score">
         <p>Your total score is:</p>
-        <span id= 'myScore'></span>
+        <span id='myScore'></span>
     </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-    
-
-    <script type="text/javascript">
-    var wins = 0;
-    var losses = 0;
-    var totalScore = 0;
-    var target;
-    
-    function start(){
-        target = Math.floor(Math.random()*102+19);
-        var targetUpdate = $('#targetScore').text(target);
-        totalScore= 0;
-        var myScore = $('#myScore').text(totalScore);
-        for(i=0;i<4;i++){
-            var gemValue =$('img').eq(i).attr('hiddenv', gemSpawn[i]);
+    <script src="assets/javascript/game.js"></script>
         
-        }
-    }
-var z=0;
-    $('#gems').on('click', function() {
-           // var gemValue = Math.ceil(Math.random() * 12);
-            
-            
-            /*win debugger
-            var gemValue=target;
-            */
-            console.log(gemValue);
-            totalScore+=gemValue;
-            myScore = $('#myScore').text(totalScore);    
-            //loss
-            if (totalScore > target){
-                console.log("you lose");
-                losses++;
-                var lossesUpdate = $('#Losses').text(losses);
-                start();
-            //win
-            }else if (totalScore == target){
-                console.log("you win");
-                wins++;
-                var winsUpdate = $('#Wins').text(wins);
-                start();
-            }
-            var hiddenValues= $(this)     
-    
-    })    
-    start();
-
-        var gemSpawn=[];
-        while(gemSpawn.length<3){
-            //purposely forced 1 value out because it trivializes the game
-            //2 is removed at this point, but can generate later
-            var antiDupe = Math.ceil(Math.random()*10+2);
-            if(gemSpawn.includes(antiDupe)){
-                antiDupe = Math.ceil(Math.random()*10+2);        
-            }else{
-                gemSpawn.push(antiDupe);
-            }
-                        
-        }    
-        console.log(gemSpawn);
-        
-        //0 1 2 01 02 12 mod outcome pairings 
-
-        antiArray =[ target%gemSpawn[0],target%gemSpawn[1],
-        target%gemSpawn[2], (target%gemSpawn[0])%gemSpawn[1],
-        (target%gemSpawn[0])%gemSpawn[2], (target%gemSpawn[1])%gemSpawn[2]]
-        console.log(antiArray);
-
-        var lastGem = Math.floor(Math.random()*6);
-        
-        console.log(antiArray[lastGem]); 
-        //no remainder, fresh value
-        if(antiArray[lastGem] >12){
-            lastGem = Math.floor(Math.random()*6);
-            while(antiArray[lastGem]>12){
-                lastGem = Math.floor(Math.random()*6);
-            }    
-            gemSpawn.push(antiArray[lastGem]);
-
-        }else if(antiArray[lastGem] == 0){
-            var gem = Math.ceil(Math.random()*11+1);
-            while(gemSpawn.includes(gem)){
-                gem = Math.ceil(Math.random()*11+1);
-            }
-            gemSpawn.push(gem);
-        }
-        //get rid of trivial 1 values
-        else if (antiArray[lastGem] == 1 ){
-            target--;
-            targetUpdate = $('#targetScore').text(target);
-            gem = Math.ceil(Math.random()*11+1);
-            while(gemSpawn.includes(gem)){
-                gem = Math.ceil(Math.random()*11+1);
-            }
-            gemSpawn.push(gem);
-        
-        }else{
-            gemSpawn.push(antiArray[lastGem]);
-        }
 
 
-        console.log(gemSpawn);
 
-    </script>
+
 </body>
+
 </html>
