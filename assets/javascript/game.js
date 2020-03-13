@@ -18,10 +18,10 @@ function start() {
         } else {
             gemSpawn.push(antiDupe);
         }
-        $('#emeraldValue').text("??");
-        $('#rubyValue').text("??");
-        $('#diamondValue').text("??");
-        $('#sapphireValue').text("??");
+        $('#emeraldValue').text("?");
+        $('#rubyValue').text("?");
+        $('#diamondValue').text("?");
+        $('#sapphireValue').text("?");
 
     }
     //console.log(gemSpawn);
@@ -101,7 +101,7 @@ $('#sapphire').on('click', function () {
 
 $('#gems').on('click', 'img', function () {
 
-   // console.log($(this).attr("hiddenv"));
+    // console.log($(this).attr("hiddenv"));
 
 
 
@@ -109,7 +109,7 @@ $('#gems').on('click', 'img', function () {
     // if (displayValue == true){
     //     displayValue = false;
     // }
-   // console.log($(this).attr("hiddenValue"));
+    // console.log($(this).attr("hiddenValue"));
     //  var gemValue = Math.ceil(Math.random() * 12);
 
     /*win debugger

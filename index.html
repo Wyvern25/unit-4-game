@@ -8,61 +8,94 @@
     <title>Gem Game</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
     <style>
-        
+
 
     </style>
 </head>
 
 <body>
-    <h1>Crystals Collector</h1>
 
-    <div id="instructions">
-        <p>You will be given a random number at the start of the game.</p>
-        <p>There are 4 crystals below. By clicking on a crystal, you will add a specific amount of points to your total
-            score.</p>
-        <p>You win the game by matching your total score to a randomly generated number; you lose the game if your totl
-            score goes above the random number.</p>
-        <p>The value of each crystal is hidden from you until you click on it.</p>
-        <p>Each time when the game starts, the game will change the values of each crystal.</p>
+    <div class='container'>
+        <h2>Crystals Collector</h2>
+        <div id="instructions">
+            <p>You will be given a random number at the start of the game.</p>
+            <p>There are 4 crystals below. By clicking on a crystal, you will add a specific amount of points to your
+                total
+                score.</p>
+            <p>You win the game by matching your total score to a randomly generated number; you lose the game if your
+                total
+                score goes above the random number.</p>
+            <p>The value of each crystal is hidden from you until you click on it.</p>
+            <p>Each time the game starts, it will change the values of each crystal.</p>
+        </div>
+
+        <div id='scored'>
+
+            <div class='col-xs-5' id='targetScore'>
+                <p>Target Score:</p>
+                <p><span id="targetScorer"></span></p>
+            </div>
+
+            <div class='col-xs-2'>
+            </div>
+            <!-- offset fix -->
+
+            <div class='col-xs-5' id="winLoss">
+                <p>Wins: <span id='Wins'></span></p>
+                <p>Losses: <span id='Losses'></span></p>
+
+            </div>
+        </div>
+
+        <!-- source: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bb3df739-d047-4430-8994-f559512aabe7/dcjpzwp-53619b1c-e7df-401e-806f-01775367702a.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2JiM2RmNzM5LWQwNDctNDQzMC04OTk0LWY1NTk1MTJhYWJlN1wvZGNqcHp3cC01MzYxOWIxYy1lN2RmLTQwMWUtODA2Zi0wMTc3NTM2NzcwMmEuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9CO15rOWdHEy_dIYQukqXkOa0qoswWviYTDF2OzeOI8 -->
+        <div id="gems">
+            <div class='col-xs-3'>
+                <img class='responsive' id='emerald' src="assets/images/emerald.png" hiddenv="">
+            </div>
+            <div class='col-xs-3'>
+                <img class='responsive' id='ruby' src="assets/images/ruby.png" hiddenv="">
+            </div>
+            <div class='col-xs-3'>
+                <img class='responsive' id='diamond' src="assets/images/diamond.png" hiddenv="">
+            </div>
+            <div class='col-xs-3'>
+                <img class='responsive' id='sapphire' src="assets/images/sapphire.png" hiddenv="">
+            </div>
+        </div>
+        <div id='scoreGems'>
+            <div class='col-xs-3'>
+                <p id='emeraldValue' class='text-xs-center'></p>
+            </div>
+
+            <div class='col-xs-3'>
+                <p id='rubyValue' class='text-xs-center'></p>
+            </div>
+
+            <div class='col-xs-3'>
+                <p id='diamondValue' class='text-xs-center'></p>
+            </div>
+
+            <div class='col-xs-3'>
+                <p id='sapphireValue' class='text-xs-center'></p>
+            </div>
+        </div>
+
+
+        <br>
+
+        <div id="score">
+            <p>Your total score is:</p>
+            <span id='myScore'></span>
+        </div>
+        <br>
     </div>
-
-    <div id='targetScore'>
-        <p>Target Score:</p>
-        <span id="targetScorer"></span>
-    </div>
-
-    <div id="winLoss">
-        <p>Wins: <span id='Wins'></span></p>
-        <p>Losses: <span id='Losses'></span></p>
-    </div>
-
-    <!-- source: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bb3df739-d047-4430-8994-f559512aabe7/dcjpzwp-53619b1c-e7df-401e-806f-01775367702a.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2JiM2RmNzM5LWQwNDctNDQzMC04OTk0LWY1NTk1MTJhYWJlN1wvZGNqcHp3cC01MzYxOWIxYy1lN2RmLTQwMWUtODA2Zi0wMTc3NTM2NzcwMmEuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9CO15rOWdHEy_dIYQukqXkOa0qoswWviYTDF2OzeOI8 -->
-    <div id="gems">
-        <img id='emerald' src="assets/images/emerald.png" hiddenv="">
-        <img id='ruby' src="assets/images/ruby.png" hiddenv="">
-        <img id='diamond' src="assets/images/diamond.png" hiddenv="">
-        <img id='sapphire' src="assets/images/sapphire.png" hiddenv="">
-    </div>
-    <div id='scoreGems'>
-        <span id='emeraldValue'></span>
-        <span id='rubyValue'></span>
-        <span id='diamondValue'></span>
-        <span id='sapphireValue'></span>
-
-    </div>
-
-    <br>
-
-    <div id="score">
-        <p>Your total score is:</p>
-        <span id='myScore'></span>
-    </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/game.js"></script>
-        
+
 
 
 
